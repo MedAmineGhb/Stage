@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recettes de Cuisine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stle.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+    <header>
+        <div class="logo">Mon Site de Recettes</div>
+        <nav>
+            <ul>
+                <li class="active"> <a href="{{ url_for('dashboard') }}">Accueil</a></li>
+                <li><a href="{{ url_for('manage_recipes') }}">Modifying</a></li>
+                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="search-bar">
+        <form method="GET" action="{{ url_for('dashboard') }}">
+            <input class="search-input" type="search" name="query" placeholder="Rechercher une recette">
+            <button type="submit" class="search-icon material-symbols-outlined">search</button>
+        </form>
+    </section>
+    
+    <section class="categories">
+        {% for recipe in recipes %}
+            <div class="category">
+                <h3>{{ recipe[1] }}</h3> 
+                <p>{{ recipe[2] }}</p> 
+                <p class="category-name">{{ recipe[3] }}</p> 
+            </div>
+            
+        {% endfor %}
+    </section>
+
+</body>
+</html>
